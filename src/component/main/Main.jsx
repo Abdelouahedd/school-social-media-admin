@@ -1,23 +1,121 @@
-import React, {useState} from 'react'
-import Footer from '../shared/footer/Footer'
+import React, {useState, useRef, useCallback, useEffect} from 'react'
+import {Table, Space, Button, Popconfirm, Tag, Input} from 'antd';
 import * as Icon from 'react-feather';
+import Highlighter from 'react-highlight-words';
+import {SearchOutlined} from '@ant-design/icons';
+import Footer from "../shared/footer/Footer";
 
+const {Column} = Table;
 
 export default function Main() {
     const {REACT_APP_URL} = process.env;
 
+    //Fontion to create a filter in table of users
+    const searchInput = useRef();
+    const [searchText, setSearchText] = useState("");
+    const [searchedColumn, setSearchedColumn] = useState("");
+    const getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
+            <div style={{padding: 8}}>
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{width: 188, marginBottom: 8, display: 'block'}}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined/>}
+                        size="small"
+                        style={{width: 90}}
+                    >
+                        Search
+                    </Button>
+                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{width: 90}}>
+                        Reset
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: filtered => <SearchOutlined style={{color: filtered ? '#1890ff' : undefined}}/>,
+        onFilter: (value, record) =>
+            record[dataIndex]
+                ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+                : '',
+        onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+                setTimeout(() => searchInput.current.select(), 100);
+            }
+        },
+        return: text =>
+            searchedColumn === dataIndex ?
+                (<Highlighter
+                    highlightStyle={{backgroundColor: '#ffc069', padding: 0}}
+                    searchWords={[searchText]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ''}
+                />)
+                :
+                (text),
+    });
 
-    const [data, setData] = useState(
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex)
+    };
+
+    const handleReset = clearFilters => {
+        clearFilters();
+        setSearchText("")
+    };
+
+
+
+
+    const [data, setData] = useState({
+        numberOfProf: 0,
+        numberOfStudent: 0,
+        numberOfCours: 0,
+        numberOfFiliere: 0,
+        nbrStudentByFiliere: [],
+        nbrAbsByModule: []
+    });
+    const [pagination, setPagination] = useState({
+        current: 1,
+        pageSize: 5,
+    })
+
+    const dataSource = [
         {
-            numberOfProf: 0,
-            numberOfStudent: 0,
-            numberOfCours: 0,
-            numberOfFiliere: 0,
-            nbrStudentByFiliere: [],
-            nbrAbsByModule: []
-        }
-    );
-
+            key: '1',
+            name: 'John Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+            tags: ['nice', 'developer'],
+        },
+        {
+            key: '2',
+            name: 'Jim Green',
+            age: 42,
+            address: 'London No. 1 Lake Park',
+            tags: ['loser'],
+        },
+        {
+            key: '3',
+            name: 'Joe Black',
+            age: 32,
+            address: 'Sidney No. 1 Lake Park',
+            tags: ['cool', 'teacher'],
+        },
+    ];
+    const deleteUser = (key) => {
+        console.log("User with name ", key.name, " is deleted")
+    }
 
     return (
         <div id="layoutSidenav_content">
@@ -147,9 +245,75 @@ export default function Main() {
                             </div>
                         </div>
                     </div>
+                    <div className="card mb-4">
+                        <div className="card-header">Personnel Management</div>
+                        <div className="card-body">
+                            <div className="datatable">
+                                <Table
+                                    dataSource={dataSource}
+                                    pagination={pagination}
+                                    onChange={e => setPagination(e)}
+                                    size="middle"
+                                >
+                                    <Column title="ID" dataIndex="id" key="id"/>
+                                    <Column
+                                        title="name"
+                                        dataIndex="name"
+                                        key="name"
+                                        {...getColumnSearchProps('name')}
+                                    />
+                                    <Column
+                                        title="age"
+                                        dataIndex="age"
+                                        key="age"
+                                        {...getColumnSearchProps('age')}
+                                    />
+                                    <Column
+                                        title="address"
+                                        dataIndex="address"
+                                        key="address"
+                                        {...getColumnSearchProps('address')}
+                                    />
+                                    <Column
+                                        title="tags"
+                                        dataIndex="tags"
+                                        key="tags"
+                                        {...getColumnSearchProps('tags')}
+                                        render={
+                                            (tags) =>
+                                                tags.map(tag => {
+                                                    let color = tag.length > 5 ? 'geekblue' : 'green';
+                                                    if (tag === 'loser') {
+                                                        color = 'volcano';
+                                                    }
+                                                    return (
+                                                        <Tag color={color} key={tag}>
+                                                            {tag.toUpperCase()}
+                                                        </Tag>
+                                                    );
+                                                })
+                                        }
+                                    />
+                                    <Column
+                                        title="Action"
+                                        key="action"
+                                        render={(text, record) => (
+                                            <Popconfirm title="Sure to delete?"
+                                                        onConfirm={() => deleteUser(record.key)}
+                                            >
+                                                <Button size="middle" danger type="primary">
+                                                    <i className="fa fa-trash" aria-hidden="true"/>
+                                                </Button>
+                                            </Popconfirm>
+                                        )}
+                                    />
+
+                                </Table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
-
             <Footer/>
         </div>
     )
