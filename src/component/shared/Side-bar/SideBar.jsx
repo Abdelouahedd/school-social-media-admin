@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import * as Icon from 'react-feather';
-import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
-import { MailOutlined, UsergroupDeleteOutlined, SettingOutlined } from '@ant-design/icons';
+import {Link} from 'react-router-dom';
+import {Menu} from 'antd';
+import {MailOutlined, UsergroupDeleteOutlined, SettingOutlined} from '@ant-design/icons';
 
-const { SubMenu } = Menu;
+const {SubMenu} = Menu;
+
 function SideBar(props) {
 
     const [user] = useState({
@@ -20,30 +21,25 @@ function SideBar(props) {
                 <div className="sidenav-menu">
                     <div className="nav accordion" id="accordionSidenav">
                         <Menu
-                            style={{ height: '70%', marginTop: 20, overflowY: "hidden" }}
+                            style={{height: '70%', marginTop: 20, overflowY: "hidden"}}
                             defaultOpenKeys={['dash']}
                             mode="inline"
                             className="sidenav-menu-heading"
                             aria-orientation="vertical"
                         >
-                            <Menu.Item key="dash" icon={<Icon.Activity size={20} />} >
+                            <Menu.Item key="dash" icon={<Icon.Activity size={20}/>}>
                                 <Link to="/">
                                     DashBord
                                 </Link>
                             </Menu.Item>
                             <SubMenu key="users"
-                                icon={<UsergroupDeleteOutlined style={{ fontSize: '22px' }} />}
-                                title="Gestion des utilisateur"
+                                     icon={<UsergroupDeleteOutlined style={{fontSize: '22px'}}/>}
+                                     title="Gestion des utilisateur"
                             >
-                                <Menu.ItemGroup key="et" title="Etudiant" >
+                                <Menu.ItemGroup key="et" title="Etudiant">
                                     <Menu.Item key="1">
                                         <Link to="/listEtudiant">
-                                            List des etudiant
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item key="2">
-                                        <Link to="/ajouEt">
-                                            Ajouter Etudiant
+                                            List of Students
                                         </Link>
                                     </Menu.Item>
                                 </Menu.ItemGroup>
@@ -53,14 +49,9 @@ function SideBar(props) {
                                             List des professeurs
                                         </Link>
                                     </Menu.Item>
-                                    <Menu.Item key="4">
-                                        <Link to="/ajouProf">
-                                            Ajouter Professeur
-                                        </Link>
-                                    </Menu.Item>
                                 </Menu.ItemGroup>
                             </SubMenu>
-                            <SubMenu key="fl" icon={<SettingOutlined />} title="Gestion des Filiere ">
+                            <SubMenu key="fl" icon={<SettingOutlined/>} title="Gestion des Filiere ">
                                 <Menu.Item key="5">
                                     <Link to="/listFiliere">
                                         List des Fliere
@@ -116,7 +107,7 @@ function SideBar(props) {
                                     </SubMenu>
                                 </SubMenu>
                             </SubMenu>
-                            <SubMenu key="serv" icon={<MailOutlined />} title="Gestion de demande">
+                            <SubMenu key="serv" icon={<MailOutlined/>} title="Gestion de demande">
                                 <Menu.Item key="9">
                                     <Link to="/listDemande">
                                         List des demandes
