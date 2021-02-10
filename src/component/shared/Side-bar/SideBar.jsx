@@ -17,7 +17,7 @@ function SideBar(props) {
 
     return (
         <div id="layoutSidenav_nav">
-            <nav className="sidenav shadow-right sidenav-light">
+            <nav className="sidenav shadow-right sidenav-light min-vh-100">
                 <div className="sidenav-menu">
                     <div className="nav accordion" id="accordionSidenav">
                         <Menu
@@ -34,7 +34,7 @@ function SideBar(props) {
                             </Menu.Item>
                             <SubMenu key="users"
                                      icon={<UsergroupDeleteOutlined style={{fontSize: '22px'}}/>}
-                                     title="Gestion des utilisateur"
+                                     title="Users management"
                             >
                                 <Menu.ItemGroup key="et" title="Etudiant">
                                     <Menu.Item key="1">
@@ -51,61 +51,12 @@ function SideBar(props) {
                                     </Menu.Item>
                                 </Menu.ItemGroup>
                             </SubMenu>
-                            <SubMenu key="fl" icon={<SettingOutlined/>} title="Gestion des Filiere ">
+                            <SubMenu key="groups" icon={<SettingOutlined/>} title="Groups management">
                                 <Menu.Item key="5">
-                                    <Link to="/listFiliere">
-                                        List des Fliere
+                                    <Link to="/listGroups">
+                                        List of Groups
                                     </Link>
                                 </Menu.Item>
-                                <Menu.Item key="6">
-                                    <Link to="/ajoutFiliere">
-                                        Ajouter Filiere
-                                    </Link>
-                                </Menu.Item>
-                                <SubMenu key="niv" title="Niveau">
-                                    <Menu.Item key="7">
-                                        <Link to="/listNiveau">
-                                            List Niveau
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item key="8">
-                                        <Link to="/ajoutNiveau">
-                                            Ajouter niveau
-                                        </Link>
-                                    </Menu.Item>
-                                </SubMenu>
-                                <SubMenu key="sem" title="Semestre">
-                                    <Menu.Item key="9">
-                                        <Link to="/listSemestre">
-                                            List Semestre
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item key="10">
-                                        <Link to="/ajoutSemestre">
-                                            Ajouter Semestre
-                                        </Link>
-                                    </Menu.Item>
-                                </SubMenu>
-                                <SubMenu key="mod" title="Module">
-                                    <Menu.Item key="11">
-                                        <Link to="/listModule">
-                                            List Module
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item key="12">
-                                        <Link to="/ajouModule">
-                                            Ajouter Module
-                                        </Link>
-                                    </Menu.Item>
-                                    <SubMenu key="sub6" title="Element Module">
-
-                                        <Menu.Item key="14">
-                                            <Link to="/ajoutElModule">
-                                                Ajouter element
-                                            </Link>
-                                        </Menu.Item>
-                                    </SubMenu>
-                                </SubMenu>
                             </SubMenu>
                             <SubMenu key="serv" icon={<MailOutlined/>} title="Gestion de demande">
                                 <Menu.Item key="9">
