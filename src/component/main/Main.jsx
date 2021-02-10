@@ -75,8 +75,6 @@ export default function Main() {
     };
 
 
-
-
     const [data, setData] = useState({
         numberOfProf: 0,
         numberOfStudent: 0,
@@ -166,10 +164,10 @@ export default function Main() {
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="mr-3">
-                                            <div className="text-white-95 small">Nombre des professeur</div>
+                                            <div className="text-white-95 small">Number of profs</div>
                                             <div className="text-lg font-weight-bold">{data?.numberOfProf}</div>
                                         </div>
-                                        <i className="fas fa-chalkboard-teacher fa-3x text-white-150"></i>
+                                        <i className="fas fa-chalkboard-teacher fa-3x text-white-150"/>
                                     </div>
                                 </div>
 
@@ -180,10 +178,10 @@ export default function Main() {
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="mr">
-                                            <div className="text-white-95 small">Nombre des etudiant</div>
+                                            <div className="text-white-95 small">Number of students</div>
                                             <div className="text-lg font-weight-bold">{data?.numberOfStudent}</div>
                                         </div>
-                                        <i className="fas fa-user-graduate fa-3x  text-white-150 "></i>
+                                        <i className="fas fa-user-graduate fa-3x  text-white-150 "/>
                                     </div>
                                 </div>
 
@@ -195,10 +193,10 @@ export default function Main() {
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="mr-3">
 
-                                            <div className="text-white-95 small">Nombre des cours</div>
+                                            <div className="text-white-95 small">Numbre of groups</div>
                                             <div className="text-lg font-weight-bold">{data?.numberOfCours}</div>
                                         </div>
-                                        <i className="fas fa-backpack fa-3x text-white-150"></i>
+                                        <i className="fa fa-users fa-3x text-white-150"/>
                                     </div>
                                 </div>
 
@@ -209,10 +207,10 @@ export default function Main() {
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="mr-3">
-                                            <div className="text-white-95 small">Nombre des Filiére</div>
+                                            <div className="text-white-95 small">Number of posts</div>
                                             <div className="text-lg font-weight-bold">{data?.numberOfFiliere}</div>
                                         </div>
-                                        <i className="fa fa-school fa-3x text-white-150"></i>
+                                        <Icon.Activity size={25}/>
                                     </div>
                                 </div>
 
@@ -224,7 +222,7 @@ export default function Main() {
                         <div className="col-xxl-6 col-xl-6 mb-4 ">
                             <div className="card card-header-actions h-100">
                                 <div className="card-header">
-                                    Nombre des etudiant par filiere
+                                    Number of posts by group
                                 </div>
                                 <div className="card-body">
 
@@ -236,7 +234,7 @@ export default function Main() {
                         <div className="col-xxl-6 col-xl-6 mb-4">
                             <div className="card card-header-actions h-100">
                                 <div className="card-header">
-                                    Nombre des absences par module
+                                    Number of event by Date
                                 </div>
                                 <div className="card-body">
 
@@ -246,7 +244,7 @@ export default function Main() {
                         </div>
                     </div>
                     <div className="card mb-4">
-                        <div className="card-header">Personnel Management</div>
+                        <div className="card-header">No Active Acounts</div>
                         <div className="card-body">
                             <div className="datatable">
                                 <Table

@@ -123,7 +123,7 @@ function ListProfs(props) {
                                             {/* <i className="fa fa-user text-white-50" aria-hidden="true"></i> */}
                                             <Icon.Users className="feather-xl text-white-50"/>
                                         </div>
-                                        List of Students
+                                        List of Professors
                                     </h1>
                                 </div>
                             </div>
