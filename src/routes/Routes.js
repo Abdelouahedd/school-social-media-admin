@@ -9,6 +9,7 @@ const ListProfs = lazy(() => import("../component/UsersManage/professeurs/ListPr
 const UpdateProf = lazy(() => import("../component/UsersManage/professeurs/UpdateProf"));
 const ListGroups = lazy(() => import("../component/GroupManage/ListGroups"));
 const Group = lazy(() => import("../component/GroupManage/Group"));
+const ListEvents = lazy(() => import("../component/EventManage/ListEvents"));
 
 const Routes = () => (
     <Switch>
@@ -19,6 +20,7 @@ const Routes = () => (
         <Route path="/updateProf/:id" component={UpdateProf} exact/>
         <Route path='/listGroups' component={ListGroups} exact/>
         <Route path="/group/:id" component={Group} exact/>
+        <Route path='/listEvent' component={ListEvents} exact/>
     </Switch>
 );
 export default Routes;

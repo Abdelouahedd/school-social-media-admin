@@ -58,10 +58,10 @@ function SideBar(props) {
                                     </Link>
                                 </Menu.Item>
                             </SubMenu>
-                            <SubMenu key="serv" icon={<MailOutlined/>} title="Gestion de demande">
+                            <SubMenu key="serv" icon={<MailOutlined/>} title="Events management">
                                 <Menu.Item key="9">
-                                    <Link to="/listDemande">
-                                        List des demandes
+                                    <Link to="/listEvent">
+                                        List of Event
                                     </Link>
                                 </Menu.Item>
                             </SubMenu>
