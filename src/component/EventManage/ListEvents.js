@@ -73,58 +73,60 @@ function ListEvents(props) {
         setSearchText("")
     };
 
-    const [data, setData] = useState([]);
-    const [pagination, setPagination] = useState({
-        current: 1,
-        pageSize: 4,
-    })
 
     const dataSource = [
         {
             id: '1',
-            name: "JhonBrown@gmail.com",
-            deadline: 'John ',
-            localisation: ' Brown',
+            name: "Journée d'expere",
+            deadline: '12-12-2020 ',
+            localisation: ' ENSA',
             user: {
                 id: '1',
-                email: "JhonBrown@gmail.com",
-                lastName: 'John ',
-                firstName: ' Brown',
-                roles: ['STANDARD', 'STUDENT'],
+                email: "gherabi@gmail.com",
+                lastName: 'Mr GHERABI ',
+                firstName: 'NOREDINNE',
+                roles: ['STANDARD', 'PROF'],
             }
         },
         {
             id: '2',
-            name: "JhonBrown@gmail.com",
-            deadline: 'John ',
-            localisation: ' Brown',
+            name: "OS",
+            deadline: '12-12-2020 ',
+            localisation: ' ENSA',
             user: {
-                id: '2',
-                email: "JhonBrown@gmail.com",
-                lastName: 'John ',
-                firstName: ' Brown',
-                roles: ['STANDARD', 'STUDENT'],
+                id: '1',
+                email: "hadifi.imad@gmail.com",
+                lastName: 'Mr HAFIDI ',
+                firstName: 'IMADE',
+                roles: ['STANDARD', 'PROF'],
             }
         },
         {
             id: '3',
-            name: "JhonBrown@gmail.com",
-            deadline: 'John ',
-            localisation: ' Brown',
+            name: "DEVOPS DAY",
+            deadline: '12-12-2020 ',
+            localisation: ' ENSA',
             user: {
-                id: '3',
-                email: "JhonBrown@gmail.com",
-                lastName: 'John ',
-                firstName: ' Brown',
-                roles: ['STANDARD', 'STUDENT'],
+                id: '1',
+                email: "ennouriabdelouahed@gmail.com",
+                lastName: 'Ennouri ',
+                firstName: 'Abdelouahed',
+                roles: ['STANDARD', 'STANDARD'],
             }
         },
 
     ];
 
+    const [data, setData] = useState(dataSource);
+    const [pagination, setPagination] = useState({
+        current: 1,
+        pageSize: 4,
+    })
+
 
     function deleteEvent(key) {
         console.log("Delete Student")
+        setData(data.filter(d => d.id != key))
     }
 
 
@@ -161,7 +163,7 @@ function ListEvents(props) {
                     <div className="row d-flex">
                         <div className="datatable">
                             <Table
-                                dataSource={dataSource}
+                                dataSource={data}
                                 pagination={pagination}
                                 onChange={e => setPagination(e)}
                                 size="middle"
@@ -202,7 +204,7 @@ function ListEvents(props) {
                                     render={(text, record) => (
                                         <Popconfirm
                                             title="Sure to delete?"
-                                            onConfirm={() => deleteEvent(record.key)}
+                                            onConfirm={() => deleteEvent(record.id)}
                                         >
                                             <Button size="middle" danger type="primary"
                                                     icon={<i className="fa fa-trash"

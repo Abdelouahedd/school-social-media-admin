@@ -7,22 +7,16 @@ function ListGroups(props) {
 
     const data = [
         {
-            name: 'Title 1',
+            name: 'GI ',
         },
         {
-            name: 'Title 2',
+            name: 'IID',
         },
         {
-            name: 'Title 3',
+            name: 'GRT',
         },
         {
-            name: 'Title 4',
-        },
-        {
-            name: 'Title 5',
-        },
-        {
-            name: 'Title 6',
+            name: 'BIG DATA',
         },
     ];
 
